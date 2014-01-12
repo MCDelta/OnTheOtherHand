@@ -1,0 +1,63 @@
+// MC Delta, OOH
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT' 
+    }
+}
+
+apply plugin: "forge"
+
+group = 'mcdelta.ooh'
+version = '1.1a'
+archivesBaseName = 'OOH'
+
+sourceSets {
+    main {
+        java { srcDir 'common' }
+        resources { srcDir 'resources' }
+    }
+}
+
+minecraft {
+    version = "1.6.4-9.11.1.964"
+    assetDir = "run/assets"
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        expand version: version, mcversion: minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+    }
+}
+
+jar {
+    archiveName = baseName + "[" + version + "].jar"
+    manifest {
+        attributes 'MCVersion' : project.minecraft.version
+        attributes 'Version' : project.version
+    }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    appendix = 'src'
+}
+
+artifacts {
+    archives sourceJar
+}
