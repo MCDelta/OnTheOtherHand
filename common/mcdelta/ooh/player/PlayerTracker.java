@@ -34,7 +34,6 @@ public class PlayerTracker implements IPlayerTracker
      @Override
      public void onPlayerChangedDimension (EntityPlayer player)
      {
-          
      }
      
      
