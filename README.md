@@ -14,8 +14,6 @@ So let's review what is OOH?
 
 How much better can you get? :D
 
-To compile for yourself set isObfuscated in the main class file to true then run recompile.sh and reobfuscate_srg.sh as as usual.
-
 
 How to Play:
 ====================
